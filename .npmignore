@@ -5,3 +5,5 @@
 .husky/pre-commit
 .nyc_output
 tests
+.travis.yml
+.gitattributes
