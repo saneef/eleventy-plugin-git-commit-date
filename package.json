@@ -1,0 +1,41 @@
+{
+  "name": "eleventy-plugin-git-commit-date",
+  "version": "0.0.0",
+  "description": "Eleventy plugin to get Git commit time of a file, or a Eleventy collection.",
+  "main": ".eleventy.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com:saneef/eleventy-plugin-git-commit-date.git"
+  },
+  "scripts": {
+    "lint": "eslint lib/**.js tests/**.js",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "last-updated",
+    "modified",
+    "git",
+    "eleventy",
+    "11ty",
+    "eleventy-plugin"
+  ],
+  "author": "Saneef Ansari <hello@saneef.com> (https://saneef.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "cross-spawn": "^7.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-xo-space": "^0.29.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.3.2",
+    "rimraf": "^3.0.2"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,md,json}": "prettier --write"
+  }
+}
