@@ -8,7 +8,7 @@
     "url": "git+https://github.com:saneef/eleventy-plugin-git-commit-date.git"
   },
   "scripts": {
-    "lint": "eslint .eleventy.js src/**.js tests/**.js",
+    "lint": "eslint src/**.js tests/**.js",
     "test": "nyc ava --timeout=1m -v --color",
     "prepare": "husky install"
   },

@@ -14,7 +14,7 @@ test("Get newest commit date of collection", (t) => {
   ];
   t.is(
     getCollectionNewestGitCommitDate(collection).toISOString(),
-    "2021-08-19T07:38:42.000Z"
+    "2021-08-19T09:57:47.000Z"
   );
 });
 

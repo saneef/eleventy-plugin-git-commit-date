@@ -12,7 +12,7 @@ test("Get commit date of a committed file", (t) => {
   const filePath = path.join(__dirname, "./fixtures/sample.md");
   t.is(
     getGitCommitDateFromPath(filePath).toISOString(),
-    "2021-08-19T07:37:10.000Z"
+    "2021-08-19T09:57:47.000Z"
   );
 });
 
