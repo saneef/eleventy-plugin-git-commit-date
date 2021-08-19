@@ -4,6 +4,11 @@ node_js:
   - 14
   - 16
 
+os:
+  - linux
+  - osx
+  - windows
+
 before_script:
   - npm install
 script:
