@@ -8,7 +8,7 @@
     "url": "git+https://github.com:saneef/eleventy-plugin-git-commit-date.git"
   },
   "scripts": {
-    "lint": "eslint lib/**.js tests/**.js",
+    "lint": "eslint src/**.js",
     "prepare": "husky install"
   },
   "keywords": [
