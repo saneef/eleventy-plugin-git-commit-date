@@ -11,13 +11,13 @@ This Eleventy plugin provides two [template filters](https://www.11ty.dev/docs/f
 
 ## Usage
 
-### Install
+### 1. Install
 
 ```sh
 npm install eleventy-plugin-git-commit-date
 ```
 
-### Add to Eleventy config
+### 2. Add to Eleventy config
 
 ```js
 // .eleventy.js
@@ -29,7 +29,7 @@ module.exports = function (eleventyConfig) {
 };
 ```
 
-### Use in templates
+### 3. Use in templates
 
 ```nunjucks
 Using {{ page.inputPath | getGitCommitDateFromPath }} will display the git commit date of the file using a local time zone like:
@@ -40,3 +40,8 @@ Using {{ collections.all | getCollectionNewestGitCommitDate }} will display the 
 
 Sun Dec 31 2017 18:00:00 GMT-0600 (Central Standard Time)
 ```
+
+## Credits
+
+* [@zachleat](https://github.com/11ty/eleventy/issues/142) suggested the use of Git commit dates instead of modified date.
+* The code is based on [@vuepress/plugin-last-updated](https://github.com/vuejs/vuepress/tree/master/packages/@vuepress/plugin-last-updated).
