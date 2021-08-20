@@ -13,24 +13,25 @@ const spawn = require("cross-spawn");
  * @return     {Date}  The git commit date if path is commited to Git.
  */
 module.exports = function (filePath) {
-  let commitDate;
-  const output = spawn.sync(
-    "git",
-    ["log", "-1", "--format=%at", path.basename(filePath)],
-    {
-      cwd: path.dirname(filePath),
-    }
-  );
+  let output;
 
-  if (output.stdout) {
-    const ts = parseInt(output.stdout.toString("utf-8"), 10) * 1000;
-
-    // Convert only valid timestamps. Paths not commited
-    // to Git returns empty timestamps.
-    if (!isNaN(ts)) {
-      commitDate = new Date(ts);
-    }
+  try {
+    output = spawn.sync(
+      "git",
+      ["log", "-1", "--format=%at", path.basename(filePath)],
+      { cwd: path.dirname(filePath) }
+    );
+  } catch {
+    throw new Error("Fail to run 'git log'");
   }
 
-  return commitDate;
+  if (output && output.stdout) {
+    const ts = parseInt(output.stdout.toString("utf-8"), 10) * 1000;
+
+    // Paths not commited to Git returns empty timestamps, resulting in NaN.
+    // So, convert only valid timestamps.
+    if (!isNaN(ts)) {
+      return new Date(ts);
+    }
+  }
 };

@@ -12,16 +12,15 @@ test("Get newest commit date of collection", (t) => {
     { inputPath: path.join(__dirname, "./fixtures/sample.md") },
     { inputPath: path.join(__dirname, "./fixtures/another-sample-file.md") },
   ];
-  t.is(
-    getCollectionNewestGitCommitDate(collection).toISOString(),
-    "2021-08-19T09:57:47.000Z"
-  );
+  const date = getCollectionNewestGitCommitDate(collection);
+  t.truthy(date);
+  t.is(date.toISOString(), "2021-08-19T09:57:47.000Z");
 });
 
 test("Shouldn't get commit date from an empty collection", async (t) => {
   const collection = [];
 
-  t.falsy(getCollectionNewestGitCommitDate(collection));
+  t.is(getCollectionNewestGitCommitDate(collection), undefined);
 });
 
 test("Shouldn't get commit date from collection of uncommited files", async (t) => {
@@ -35,7 +34,7 @@ test("Shouldn't get commit date from collection of uncommited files", async (t) 
   await fs.mkdir(outputBase, { recursive: true });
   await Promise.all(collection.map((p) => fs.writeFile(p.inputPath, "")));
 
-  t.falsy(getCollectionNewestGitCommitDate(collection));
+  t.is(getCollectionNewestGitCommitDate(collection), undefined);
 
   await rimraf(outputBase);
 });

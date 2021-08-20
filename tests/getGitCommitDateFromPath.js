@@ -10,10 +10,9 @@ const tempFileName = "test.md";
 
 test("Get commit date of a committed file", (t) => {
   const filePath = path.join(__dirname, "./fixtures/sample.md");
-  t.is(
-    getGitCommitDateFromPath(filePath).toISOString(),
-    "2021-08-19T09:57:47.000Z"
-  );
+  const date = getGitCommitDateFromPath(filePath);
+  t.truthy(date);
+  t.is(date.toISOString(), "2021-08-19T09:57:47.000Z");
 });
 
 test("Should not get commit date of a uncommitted file", async (t) => {
@@ -23,7 +22,7 @@ test("Should not get commit date of a uncommitted file", async (t) => {
   await fs.mkdir(outputBase, { recursive: true });
   await fs.writeFile(filePath, "");
 
-  t.falsy(getGitCommitDateFromPath(filePath));
+  t.is(getGitCommitDateFromPath(filePath), undefined);
 
   await rimraf(outputBase);
 });
