@@ -1,11 +1,13 @@
 # eleventy-plugin-git-commit-date
 
-This Eleventy plugin adds two [filters](https://www.11ty.dev/docs/filters/) to your templates:
+This Eleventy plugin provides two [template filters](https://www.11ty.dev/docs/filters/):
 
-1. `getGitCommitDateFromPath`: Returns Git commit date from path. E.g. `{{ page.inputPath | getGitCommitDateFromPath }}`.
-2. `getCollectionNewestGitCommitDate`: Returns Git commit date of the newest committed file from a collection. E.g. `{{ collections.all | getCollectionNewestGitCommitDate }}`.
+1. `getGitCommitDateFromPath`: Gets Git commit date from path. E.g. `{{ page.inputPath | getGitCommitDateFromPath }}`.
+2. `getCollectionNewestGitCommitDate`: Get Git commit date of the newest committed file from a collection. E.g. `{{ collections.all | getCollectionNewestGitCommitDate }}`.
 
-⚠️ Getting Git commit date is a bit slow. So, use this sparingly. This plugin was made primarily to populate `<updated>` field in RSS Feed.
+🌏 This plugin is made primarily to populate `<updated>` fields in an RSS feed. Here is [a blog post on how to use this plugin](https://saneef.com/tutorials/fix-dates-on-eleventy-rss-feeds/) with [`eleventy-plugin-rss`](https://www.11ty.dev/docs/plugins/rss/).
+
+⚠️ Getting Git commit date is a bit slow (\~50ms for each path). So, use it sparingly. It's recommended to call this filter within a production flag.
 
 ## Usage
 
