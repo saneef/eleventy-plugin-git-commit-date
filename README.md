@@ -41,7 +41,20 @@ Using {{ collections.all | getCollectionNewestGitCommitDate }} will display the 
 Sun Dec 31 2017 18:00:00 GMT-0600 (Central Standard Time)
 ```
 
+## FAQs
+
+### When used with GitHub Pages, why are the last commit dates incorrect?
+
+Only the last commit is checked out by [GitHub Action Checkout](https://github.com/actions/checkout#:~:text=Only%20a%20single%20commit%20is%20fetched%20by%20default) by default. The commit dates for files changed in the previous commits will not be available. You can set the `fetch-depth` as `0` to get all the history from the Git repository.
+
+```diff
+   - name: Checkout
+     uses: actions/checkout@v3
++    with:
++      fetch-depth: 0
+```
+
 ## Credits
 
-* [@zachleat](https://github.com/11ty/eleventy/issues/142) suggested the use of Git commit dates instead of modified date.
-* The code is based on [@vuepress/plugin-last-updated](https://github.com/vuejs/vuepress/tree/master/packages/@vuepress/plugin-last-updated).
+- [@zachleat](https://github.com/11ty/eleventy/issues/142) suggested the use of Git commit dates instead of modified date.
+- The code is based on [@vuepress/plugin-last-updated](https://github.com/vuejs/vuepress/tree/master/packages/@vuepress/plugin-last-updated).
