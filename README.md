@@ -2,8 +2,10 @@
 
 This Eleventy plugin provides two [template filters](https://www.11ty.dev/docs/filters/):
 
-1. `getGitCommitDateFromPath`: Gets Git commit date from path. E.g. `{{ page.inputPath | getGitCommitDateFromPath }}`.
-2. `getCollectionNewestGitCommitDate`: Get Git commit date of the newest committed file from a collection. E.g. `{{ collections.all | getCollectionNewestGitCommitDate }}`.
+| Filter                             | Description                                                                                                                                   |
+| :--------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| `getGitCommitDateFromPath`         | Gets Git commit date from path.<br><br>Usage: `{{ page.inputPath \| getGitCommitDateFromPath }}`                                              |
+| `getCollectionNewestGitCommitDate` | Get Git commit date of the newest committed file from a collection.<br><br>Usage: `{{ collections.all \| getCollectionNewestGitCommitDate }}` |
 
 🌏 This plugin is made primarily to populate `<updated>` fields in an RSS feed. Here is [a blog post on how to use this plugin](https://saneef.com/tutorials/fix-dates-on-eleventy-rss-feeds/) with [`eleventy-plugin-rss`](https://www.11ty.dev/docs/plugins/rss/).
 
