@@ -3,14 +3,25 @@ const path = require("path");
 const spawn = require("cross-spawn");
 
 /**
- * Gets the Git commit date from path, filtering commits that match a regex pattern.
+ * Gets the Git commit date from path, filtering commits by regex.
  *
  * @param      {string}  filePath  The file path
- * @param      {RegExp}  regex     The regex to match against
+ * @param      {Object}  options   Filter options
+ * @param      {RegExp}  options.keep Whitelisting regex. Commit subjects matching this regex are kept.
+ * @param      {RegExp}  options.ignore Blacklisting regex. Commit subjects matching this regex are ignored.
  *
  * @return     {Date}  The git commit date if path is commited to Git.
  */
-module.exports = function (filePath, regex) {
+module.exports = function (filePath, options) {
+  const { keep, ignore } = options || {};
+
+  function matchesWhitelist(subject) {
+    return keep ? subject.match(keep) : true;
+  }
+  function matchesBlacklist(subject) {
+    return ignore ? !subject.match(ignore) : true;
+  }
+
   let output;
 
   try {
@@ -26,8 +37,11 @@ module.exports = function (filePath, regex) {
   if (output && output.stdout) {
     const commits = output.stdout.toString("utf-8").split('\n');
 
-    // Filter commits which match the regex.
-    const filtered = !regex ? commits : commits.filter(s => s.substring(s.indexOf(' ') + 1).match(regex));
+    // Filter commits which match filter options.
+    const filtered = commits.filter(s => {
+      const subject = s.substring(s.indexOf(' ') + 1);
+      return matchesWhitelist(subject) && matchesBlacklist(subject);
+    });
 
     if (filtered && filtered[0]) {
       // Grab latest commit timestamp.
