@@ -29,6 +29,12 @@ test("Get commit date of a committed file (filtered 2)", (t) => {
   t.is(date.toISOString(), "2021-08-19T09:24:06.000Z");
 });
 
+test("Get commit date of a committed file (filtered 3)", (t) => {
+  const filePath = path.join(__dirname, "./fixtures/sample.md");
+  const date = getGitCommitDateFromPathByMessage(filePath, { keep: /^First/, ignore: /^First/ });
+  t.is(date, undefined);
+});
+
 test("Get commit date of a committed file (no match)", (t) => {
   const filePath = path.join(__dirname, "./fixtures/sample.md");
   const date = getGitCommitDateFromPathByMessage(filePath, { keep: /never gonna give you up/ });
