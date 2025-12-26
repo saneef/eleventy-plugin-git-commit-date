@@ -1,9 +1,10 @@
 .editorconfig
 .eslintcache
-.eslintrc.js
+.eslint.config.js
 .github/
-.husky/pre-commit
 .nyc_output
 tests
-.travis.yml
 .gitattributes
+prettier.config.js
+lefthook.yml
+ava.config.js
