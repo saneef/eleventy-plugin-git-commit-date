@@ -10,8 +10,7 @@
   },
   "scripts": {
     "lint": "eslint src/**.js tests/**.js",
-    "test": "nyc ava --timeout=1m -v --color",
-    "prepare": "husky install"
+    "test": "nyc ava --timeout=1m -v --color"
   },
   "keywords": [
     "last-updated",
@@ -35,15 +34,10 @@
     "eslint-config-xo-space": "^0.35.0",
     "eslint-plugin-prettier": "^5.5.4",
     "globals": "^16.5.0",
-    "husky": "^7.0.1",
-    "lint-staged": "^11.1.2",
+    "lefthook": "^2.0.13",
     "nyc": "^17.1.0",
     "prettier": "^3.7.4",
     "prettier-plugin-jsdoc": "^1.8.0",
     "rimraf": "^5.0.9"
-  },
-  "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.{js,md,json}": "prettier --write"
   }
 }
