@@ -1,3 +1,4 @@
+// @ts-check
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
 import prettier from "eslint-plugin-prettier";
