@@ -7,7 +7,7 @@
  * @param {Function} fn The function to memoize
  * @returns {Function}
  */
-function memoize(fn) {
+export default function memoize(fn) {
   const cache = new Map();
 
   return (...args) => {
@@ -25,5 +25,3 @@ function memoize(fn) {
     return cache.get(cacheKey);
   };
 }
-
-module.exports = memoize;

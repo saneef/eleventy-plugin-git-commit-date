@@ -3,4 +3,4 @@ const config = {
   plugins: ["prettier-plugin-jsdoc"],
 };
 
-module.exports = config;
+export default config;

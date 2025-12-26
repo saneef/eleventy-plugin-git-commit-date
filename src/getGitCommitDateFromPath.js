@@ -1,7 +1,7 @@
 // @ts-check
-const path = require("path");
-const spawn = require("cross-spawn");
-const memoize = require("./utils/memoize");
+import spawn from "cross-spawn";
+import path from "node:path";
+import memoize from "./utils/memoize.js";
 
 /**
  * Gets the Git commit date from path.
@@ -36,4 +36,4 @@ function getGitCommitDateFromPath(filePath) {
   }
 }
 
-module.exports = memoize(getGitCommitDateFromPath);
+export default memoize(getGitCommitDateFromPath);

@@ -1,7 +1,6 @@
 // @ts-check
-
-const getGitCommitDateFromPath = require("./getGitCommitDateFromPath");
-const memoize = require("./utils/memoize");
+import getGitCommitDateFromPath from "./getGitCommitDateFromPath.js";
+import memoize from "./utils/memoize.js";
 
 /**
  * Gets the collection's newest Git commit date.
@@ -26,4 +25,4 @@ function getCollectionNewestGitCommitDate(collection) {
   }
 }
 
-module.exports = memoize(getCollectionNewestGitCommitDate);
+export default memoize(getCollectionNewestGitCommitDate);

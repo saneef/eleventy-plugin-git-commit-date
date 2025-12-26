@@ -1,10 +1,11 @@
-const test = require("ava");
-const path = require("path");
-const fs = require("fs/promises");
-const { rimraf } = require("rimraf");
-const getCollectionNewestGitCommitDate = require("../src/getCollectionNewestGitCommitDate.js");
+import test from "ava";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { rimraf } from "rimraf";
+import { fileURLToPath } from "url";
+import { getCollectionNewestGitCommitDate } from "../index.js";
 
-const outputBase = path.join("tests/output/");
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 test("Get newest commit date of collection", (t) => {
   const collection = [
@@ -23,6 +24,7 @@ test("Shouldn't get commit date from an empty collection", async (t) => {
 });
 
 test("Shouldn't get commit date from collection of uncommited files", async (t) => {
+  const outputBase = path.join("tests/output/");
   const collection = [
     { inputPath: path.join(outputBase, "test-01.md") },
     { inputPath: path.join(outputBase, "test-02.md") },
@@ -30,8 +32,8 @@ test("Shouldn't get commit date from collection of uncommited files", async (t) 
 
   await rimraf(outputBase);
 
-  await fs.mkdir(outputBase, { recursive: true });
-  await Promise.all(collection.map((p) => fs.writeFile(p.inputPath, "")));
+  await mkdir(outputBase, { recursive: true });
+  await Promise.all(collection.map((p) => writeFile(p.inputPath, "")));
 
   t.is(getCollectionNewestGitCommitDate(collection), undefined);
 
