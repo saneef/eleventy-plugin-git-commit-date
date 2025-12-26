@@ -1,14 +1,15 @@
 // @ts-check
+
 const getGitCommitDateFromPath = require("./getGitCommitDateFromPath");
+const memoize = require("./utils/memoize");
 
 /**
  * Gets the collection's newest Git commit date.
  *
  * @param      {Array<object>}  collection  The collection
- *
- * @return     {Date}           The collection newest git commit date.
+ * @return     {Date | undefined}  The collection newest git commit date.
  */
-module.exports = function (collection) {
+function getCollectionNewestGitCommitDate(collection) {
   if (!collection || !collection.length) {
     return;
   }
@@ -18,9 +19,11 @@ module.exports = function (collection) {
     // Timestamps will be undefined for the paths not
     // yet commited to Git. So weeding them out.
     .filter((ts) => Boolean(ts))
-    .map((ts) => ts.getTime());
+    .map((ts) => /** @type Date */ (ts).getTime());
 
   if (timestamps.length) {
     return new Date(Math.max(...timestamps));
   }
-};
+}
+
+module.exports = memoize(getCollectionNewestGitCommitDate);

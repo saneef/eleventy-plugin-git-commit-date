@@ -1,6 +1,7 @@
 // @ts-check
 const path = require("path");
 const spawn = require("cross-spawn");
+const memoize = require("./utils/memoize");
 
 /**
  * Gets the Git commit date from path.
@@ -9,10 +10,9 @@ const spawn = require("cross-spawn");
  * https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/plugin-last-updated/
  *
  * @param      {string}  filePath  The file path
- *
- * @return     {Date}  The git commit date if path is commited to Git.
+ * @return     {Date | undefined}  The git commit date if path is commited to Git.
  */
-module.exports = function (filePath) {
+function getGitCommitDateFromPath(filePath) {
   let output;
 
   try {
@@ -34,4 +34,6 @@ module.exports = function (filePath) {
       return new Date(ts);
     }
   }
-};
+}
+
+module.exports = memoize(getGitCommitDateFromPath);
