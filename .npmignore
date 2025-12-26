@@ -1,10 +1,10 @@
 .editorconfig
 .eslintcache
-.eslint.config.js
 .github/
 .nyc_output
-tests
 .gitattributes
+eslint.config.js
+tests
 prettier.config.js
 lefthook.yml
 ava.config.js
