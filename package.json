@@ -9,8 +9,7 @@
     "url": "git+https://github.com:saneef/eleventy-plugin-git-commit-date.git"
   },
   "scripts": {
-    "lint": "eslint src/**.js tests/**.js",
-    "test": "nyc ava --timeout=1m -v --color"
+    "test": "ava"
   },
   "keywords": [
     "last-updated",
@@ -35,7 +34,6 @@
     "eslint-plugin-prettier": "^5.5.4",
     "globals": "^16.5.0",
     "lefthook": "^2.0.13",
-    "nyc": "^17.1.0",
     "prettier": "^3.7.4",
     "prettier-plugin-jsdoc": "^1.8.0",
     "rimraf": "^5.0.9"
