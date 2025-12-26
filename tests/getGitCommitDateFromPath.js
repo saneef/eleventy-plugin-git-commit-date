@@ -1,8 +1,7 @@
 const test = require("ava");
 const path = require("path");
 const fs = require("fs/promises");
-const { promisify } = require("util");
-const rimraf = promisify(require("rimraf"));
+const { rimraf } = require("rimraf");
 const getGitCommitDateFromPath = require("../src/getGitCommitDateFromPath.js");
 
 const outputBase = path.join("tests/output/");
