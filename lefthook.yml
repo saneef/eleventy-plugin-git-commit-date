@@ -11,4 +11,5 @@ pre-commit:
       stage_fixed: true
 
     tests:
+      glob: "*.{js}"
       run: npm test
