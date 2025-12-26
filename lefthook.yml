@@ -2,14 +2,14 @@ pre-commit:
   commands:
     prettier:
       glob: "*.{js,md,json}"
-      run: prettier --write {staged_files}
+      run: npx prettier --write {staged_files}
       stage_fixed: true
 
     eslint:
       glob: "*.{js}"
-      run: eslint --fix {staged_files}
+      run: npx eslint --fix {staged_files}
       stage_fixed: true
 
     tests:
       glob: "*.{js}"
-      run: npm test
+      run: npm run test
