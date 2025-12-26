@@ -3,11 +3,11 @@ import getCollectionNewestGitCommitDate from "./src/getCollectionNewestGitCommit
 import getGitCommitDateFromPath from "./src/getGitCommitDateFromPath.js";
 
 export default function (eleventyConfig) {
-  eleventyConfig.addFilter(
+  eleventyConfig.addAsyncFilter(
     "getGitCommitDateFromPath",
     getGitCommitDateFromPath,
   );
-  eleventyConfig.addFilter(
+  eleventyConfig.addAsyncFilter(
     "getCollectionNewestGitCommitDate",
     getCollectionNewestGitCommitDate,
   );

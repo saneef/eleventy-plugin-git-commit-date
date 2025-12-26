@@ -5,23 +5,27 @@ import memoize from "./utils/memoize.js";
 /**
  * Gets the collection's newest Git commit date.
  *
- * @param {object[]} collection The collection
- * @returns {Date | undefined} The collection newest git commit date.
+ * @param {object[]} collection Collection
+ * @returns {Promise<Date | undefined>} Newest git commit date among the items
+ *   in the collection
  */
-function getCollectionNewestGitCommitDate(collection) {
+async function getCollectionNewestGitCommitDate(collection) {
   if (!collection || !collection.length) {
     return;
   }
 
-  const timestamps = collection
-    .map((item) => getGitCommitDateFromPath(item.inputPath))
+  const timestamps = await Promise.all(
+    collection.map((item) => getGitCommitDateFromPath(item.inputPath)),
+  );
+
+  const dates = timestamps
     // Timestamps will be undefined for the paths not
     // yet commited to Git. So weeding them out.
     .filter((ts) => Boolean(ts))
-    .map((ts) => /** @type Date */ (ts).getTime());
+    .map((ts) => ts.getTime());
 
-  if (timestamps.length) {
-    return new Date(Math.max(...timestamps));
+  if (dates.length) {
+    return new Date(Math.max(...dates));
   }
 }
 
