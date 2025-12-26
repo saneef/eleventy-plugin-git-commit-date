@@ -6,8 +6,8 @@ const memoize = require("./utils/memoize");
 /**
  * Gets the collection's newest Git commit date.
  *
- * @param      {Array<object>}  collection  The collection
- * @return     {Date | undefined}  The collection newest git commit date.
+ * @param {object[]} collection The collection
+ * @returns {Date | undefined} The collection newest git commit date.
  */
 function getCollectionNewestGitCommitDate(collection) {
   if (!collection || !collection.length) {

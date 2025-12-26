@@ -9,8 +9,8 @@ const memoize = require("./utils/memoize");
  * The code is based on @vuepress/plugin-last-updated,
  * https://github.com/vuejs/vuepress/blob/master/packages/%40vuepress/plugin-last-updated/
  *
- * @param      {string}  filePath  The file path
- * @return     {Date | undefined}  The git commit date if path is commited to Git.
+ * @param {string} filePath The file path
+ * @returns {Date | undefined} The git commit date if path is commited to Git.
  */
 function getGitCommitDateFromPath(filePath) {
   let output;
@@ -19,7 +19,7 @@ function getGitCommitDateFromPath(filePath) {
     output = spawn.sync(
       "git",
       ["log", "-1", "--format=%at", path.basename(filePath)],
-      { cwd: path.dirname(filePath) }
+      { cwd: path.dirname(filePath) },
     );
   } catch {
     throw new Error("Fail to run 'git log'");
