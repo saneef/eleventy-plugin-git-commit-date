@@ -9,8 +9,6 @@ This Eleventy plugin provides two [template filters](https://www.11ty.dev/docs/f
 
 🌏 This plugin is made primarily to populate `<updated>` fields in an RSS feed. Here is [a blog post on how to use this plugin](https://saneef.com/tutorials/fix-dates-on-eleventy-rss-feeds/) with [`eleventy-plugin-rss`](https://www.11ty.dev/docs/plugins/rss/).
 
-⚠️ Git commit date is a bit slow. So, it's recommended to call this filter within a production flag.
-
 ## Usage
 
 ### 1. Install
@@ -59,4 +57,5 @@ Only the last commit is checked out by [GitHub Action Checkout](https://github.c
 ## Credits
 
 - [@zachleat](https://github.com/11ty/eleventy/issues/142) suggested the use of Git commit dates instead of modified date.
-- The code is based on [@vuepress/plugin-last-updated](https://github.com/vuejs/vuepress/tree/master/packages/@vuepress/plugin-last-updated).
+- The core code is based on Jens Oliver Meiert' blog post [Eleventy: How to Work Around the “git Last Modified” Performance Bottleneck](https://meiert.com/blog/eleventy-git-last-modified/).
+- Pre v1.0 was based on [@vuepress/plugin-last-updated](https://github.com/vuejs/vuepress/tree/master/packages/@vuepress/plugin-last-updated).
