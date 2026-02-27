@@ -1,28 +1,28 @@
-const test = require("ava");
-const path = require("path");
-const fs = require("fs/promises");
-const { promisify } = require("util");
-const rimraf = promisify(require("rimraf"));
-const getGitCommitDateFromPath = require("../src/getGitCommitDateFromPath.js");
+import test from "ava";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { rimraf } from "rimraf";
+import { fileURLToPath } from "url";
+import { getGitCommitDateFromPath } from "../index.js";
 
-const outputBase = path.join("tests/output/");
-const tempFileName = "test.md";
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-test("Get commit date of a committed file", (t) => {
+test("Get commit date of a committed file", async (t) => {
   const filePath = path.join(__dirname, "./fixtures/sample.md");
-  const date = getGitCommitDateFromPath(filePath);
+  const date = await getGitCommitDateFromPath(filePath);
   t.truthy(date);
   t.is(date.toISOString(), "2021-08-19T09:57:47.000Z");
 });
 
 test("Should not get commit date of a uncommitted file", async (t) => {
-  const filePath = path.join(outputBase, tempFileName);
+  const outputBase = path.join(__dirname, "/output/single-file-path");
+  const filePath = path.join(outputBase, "test.md");
   await rimraf(outputBase);
 
-  await fs.mkdir(outputBase, { recursive: true });
-  await fs.writeFile(filePath, "");
+  await mkdir(outputBase, { recursive: true });
+  await writeFile(filePath, "");
 
-  t.is(getGitCommitDateFromPath(filePath), undefined);
+  t.is(await getGitCommitDateFromPath(filePath), undefined);
 
   await rimraf(outputBase);
 });

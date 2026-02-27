@@ -2,15 +2,15 @@
   "name": "eleventy-plugin-git-commit-date",
   "version": "0.1.3",
   "description": "Eleventy plugin to get Git commit time of a file, or a Eleventy collection.",
-  "main": ".eleventy.js",
+  "main": "index.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com:saneef/eleventy-plugin-git-commit-date.git"
   },
   "scripts": {
     "lint": "eslint src/**.js tests/**.js",
-    "test": "nyc ava --timeout=1m -v --color",
-    "prepare": "husky install"
+    "test": "ava"
   },
   "keywords": [
     "last-updated",
@@ -26,28 +26,17 @@
     "cross-spawn": "^7.0.3"
   },
   "devDependencies": {
-    "ava": "^3.15.0",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-config-xo-space": "^0.29.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "husky": "^7.0.1",
-    "lint-staged": "^11.1.2",
-    "nyc": "^15.1.0",
-    "prettier": "^2.3.2",
-    "rimraf": "^3.0.2"
-  },
-  "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.{js,md,json}": "prettier --write"
-  },
-  "ava": {
-    "files": [
-      "tests/**/*",
-      "!tests/utils.js"
-    ],
-    "ignoredByWatcher": [
-      "tests/output/**"
-    ]
+    "@eslint/eslintrc": "^3.3.3",
+    "@eslint/js": "^9.39.2",
+    "ava": "^6.4.1",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-config-xo-space": "^0.35.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.5.0",
+    "lefthook": "^2.0.13",
+    "prettier": "^3.7.4",
+    "prettier-plugin-jsdoc": "^1.8.0",
+    "rimraf": "^5.0.9"
   }
 }
