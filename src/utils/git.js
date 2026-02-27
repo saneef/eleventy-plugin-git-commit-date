@@ -1,7 +1,9 @@
-import { resolve } from "path";
-import { spawnAsync } from "./spawn.js";
+import { exec as nodeExec } from "node:child_process";
+import { resolve } from "node:path";
+import { promisify } from "node:util";
 
 const cwd = process.cwd();
+const exec = promisify(nodeExec);
 
 /**
  * Converts relative paths (relative to current working directory) to absolute
@@ -80,7 +82,8 @@ function parseGitOutput(str, timeStampMarker = "TS:") {
 export async function getRepoGitCommitDateMap() {
   let output;
   try {
-    output = await spawnAsync("git", ["log", "--format=TS:%at", "--name-only"]);
+    const { stdout } = await exec("git log --format=TS:%at --name-only");
+    output = stdout.toString();
   } catch (e) {
     console.log(e);
     throw new Error("Failed to run 'git log'");
