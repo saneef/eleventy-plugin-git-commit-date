@@ -1,21 +1,7 @@
 import { exec as nodeExec } from "node:child_process";
-import { resolve } from "node:path";
 import { promisify } from "node:util";
 
-const cwd = process.cwd();
 const exec = promisify(nodeExec);
-
-/**
- * Converts relative paths (relative to current working directory) to absolute
- * path to match Eleventy's `inputPath` Assume Eleventy project root is same as
- * Git repo root.
- *
- * @param {string} filePath Path relative to current working directory.
- * @returns {string} Absolute path
- */
-function absolutePath(filePath) {
-  return resolve(cwd, filePath);
-}
 
 /**
  * Convert Unix Timestamp String to Date object
@@ -57,7 +43,8 @@ function parseGitOutput(str, timeStampMarker = "TS:") {
     if (line.startsWith(timeStampMarker)) {
       currentDate = timestampToDate(line.slice(timeStampMarker.length).trim());
     } else if (currentDate) {
-      const filePath = absolutePath(line);
+      // Eleventy inputPath starts with "./"
+      const filePath = "./" + line;
 
       // Only store first occurence, as first occurence is the latest.
       if (!map.has(filePath)) {

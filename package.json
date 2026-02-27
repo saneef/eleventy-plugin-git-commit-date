@@ -22,9 +22,6 @@
   ],
   "author": "Saneef Ansari <hello@saneef.com> (https://saneef.com/)",
   "license": "MIT",
-  "dependencies": {
-    "cross-spawn": "^7.0.3"
-  },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.2",
@@ -36,7 +33,6 @@
     "globals": "^16.5.0",
     "lefthook": "^2.0.13",
     "prettier": "^3.7.4",
-    "prettier-plugin-jsdoc": "^1.8.0",
-    "rimraf": "^5.0.9"
+    "prettier-plugin-jsdoc": "^1.8.0"
   }
 }
