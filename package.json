@@ -1,6 +1,6 @@
 {
   "name": "eleventy-plugin-git-commit-date",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Eleventy plugin to get Git commit time of a file, or a Eleventy collection.",
   "main": "index.js",
   "type": "module",
